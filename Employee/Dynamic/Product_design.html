@@ -1,0 +1,149 @@
+<nav class="navbar bg-white page-nav ">
+    <button class="btn " id="menu-toggler">
+        <i class="fa-solid fa-align-left"></i>
+    </button>
+</nav>
+
+<!--=============== Create Brand Code =================-->
+<div class="row py-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 bg-white shadow-sm p-4">
+        <div class="d-flex justify-content-between align-items-center p-2 w-100 mb-2">
+            <h4>Create Product</h4>
+            <i class="fa-solid fa-users-gear items-center text-primary" style="font-size: 1.3rem;"></i>
+        </div>
+        <form class="product-form">
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option value="Choose category">Choose category</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option value="Choose brand">Choose brand</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Iphone-15">
+                </div>
+            </div>
+            <textarea rows="5" placeholder="Description" class="form-control desc mb-4"></textarea>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" placeholder="Price" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <input type="number" placeholder="Quantity" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-center thumbnail-wrapper mx-auto">
+                    <input type="file" class="form-control">
+                    <i class="fa-solid fa-camera-retro fa-2x"></i>
+                    <h6>Thumbnail</h6>
+                    <p>250×316</p>
+                </div>
+                <div class="col-md-2 text-center thumbnail-wrapper mx-auto">
+                    <input type="file" class="form-control">
+                    <i class="fa-solid fa-camera-retro fa-2x"></i>
+                    <h6>Front</h6>
+                    <p>316×615</p>
+                </div>
+                <div class="col-md-2 text-center thumbnail-wrapper mx-auto">
+                    <input type="file" class="form-control">
+                    <i class="fa-solid fa-camera-retro fa-2x"></i>
+                    <h6>Back</h6>
+                    <p>316×615</p>
+                </div>
+                <div class="col-md-2 text-center thumbnail-wrapper mx-auto">
+                    <input type="file" class="form-control">
+                    <i class="fa-solid fa-camera-retro fa-2x"></i>
+                    <h6>Right</h6>
+                    <p>316×615</p>
+                </div>
+                <div class="col-md-2 text-center thumbnail-wrapper mx-auto">
+                    <input type="file" class="form-control">
+                    <i class="fa-solid fa-camera-retro fa-2x"></i>
+                    <h6>Left</h6>
+                    <p>316×615</p>
+                </div>
+            </div>
+            <button class="btn btn-primary float-end mx-2 my-3">Create Product</button>
+
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+<!--=============== Product Category-List Code =================-->
+<div class="row py-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 bg-white shadow-sm p-4">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <h4>Product List</h4>
+            <i class="fa-solid fa-list text-success" style="font-size: 1.3rem;"></i>
+        </div>
+        <hr>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <select class="form-control produt_cat-select">
+                    <option value="Choose category">Choose categeroy</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control produt_brand-select">
+                    <option value="Choose brand">Choose brand</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 table-responsive">
+                <table class="table table-striped table-bordered text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Sr</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>price</th>
+                            <th>Qunty</th>
+                            <th>Thumb</th>
+                            <th>front</th>
+                            <th>Back</th>
+                            <th>Right</th>
+                            <th>left</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="Product_brand-list">
+                        <!-- <tr>
+                            <td class="text-nowrap text-center">1</td>
+                            <td class="text-nowrap text-center">Mobiles</td>
+                            <td class="text-nowrap text-center">Nokia</td>
+                            <td class="text-nowrap text-center">Nokia5600</td>
+                            <td class="text-nowrap text-center">foahf</td>
+                            <td class="text-nowrap text-center">1200</td>
+                            <td class="text-nowrap text-center">50pcs</td>
+                            <td class="text-nowrap text-center"> <img src="http://ecommerce/Common/Imgs/Avtr.com.png" width="37" alt="Avtar"></td>
+                            <td class="text-nowrap text-center"> <img src="http://ecommerce/Common/Imgs/Avtr.com.png" width="37" alt="Avtar"></td>
+                            <td class="text-nowrap text-center"> <img src="http://ecommerce/Common/Imgs/Avtr.com.png" width="37" alt="Avtar"></td>
+                            <td class="text-nowrap text-center"> <img src="http://ecommerce/Common/Imgs/Avtr.com.png" width="37" alt="Avtar"></td>
+                            <td class="text-nowrap text-center"> <img src="http://ecommerce/Common/Imgs/Avtr.com.png" width="37" alt="Avtar"></td>
+                            <td class="text-nowrap text-center">
+                                <button class="btn btn-sm btn-primary me-2" aria-label="Edit Category">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" aria-label="Delete Category">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

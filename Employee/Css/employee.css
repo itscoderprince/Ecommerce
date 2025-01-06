@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* <-----Side Navbar Code here---> */
+
+button {
+    border: none !important;
+}
+
+.side-nav {
+    height: 100vh;
+    background-color: slateblue;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.3s ease-in-out;
+
+    #dropdownMenuButton,
+    .dropdown-menu {
+        background-color: #e7e7e7df !important;
+    }
+}
+
+.side-nav-open {
+    width: 16%;
+}
+
+.side-nav-close {
+    width: 0%;
+    opacity: 0;
+}
+
+/* Page code here */
+.page {
+    height: auto;
+    background-color: #f2f2f2;
+    transition: 0.3s ease-in-out;
+
+    #menu-toggler {
+        font-size: 1.1rem !important;
+        border: none !important;
+        font-weight: normal;
+
+        i {
+            font-size: 1.2rem;
+        }
+
+        &:hover {
+            background-color: #f2f2f2;
+        }
+    }
+}
+
+.page-nav {
+    padding: 0.5rem 1.5rem !important;
+}
+
+.page-open {
+    width: 84%;
+    margin-left: 16%;
+}
+
+.page-close {
+    width: 100%;
+    margin-left: 0%;
+}
+
+/* <-----Page Loading Animation----> */
+
+.fade-in {
+    animation: fadeIn 0.4s ease-in;
+}
+
+.fade-out {
+    animation: fadeOut 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* <--------Product page Style-----------> */
+
+.bg-white {
+    border-radius: 8px;
+}
+
+.product-form {
+    h5 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form-select,
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .thumbnail-wrapper {
+        border: 2.5px dashed #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        position: relative;
+        transition: border-color, scale 0.3s ease-in-out;
+
+        &:hover {
+            border-color: #007bff;
+            scale: 1.1;
+        }
+
+        h6 {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    }
+
+    input[type="file"] {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,77 @@
+let stockBtn = document.querySelector("#stock-btn");
+let sideNav = document.querySelector(".side-nav");
+let menuBtn = document.querySelector(".menu-btn");
+let page = document.querySelector(".page");
+let angleIcon = document.querySelector("#angle-icon");
+
+window.onload = () => {
+    collapseFunc();
+    dynamicReqFunc();
+};
+
+// Collapse Function 👇🏻
+const collapseFunc = () => {
+    stockBtn.onclick = function () {
+        angleIcon.classList.toggle("fa-angle-left");
+        angleIcon.classList.toggle("fa-angle-down");
+    };
+};
+
+// Navbar Menu button Function 👇🏻
+const menuToggler = () => {
+    const open = sideNav.classList.contains("side-nav-open");
+    menuBtn.onclick = () => {
+        sideNav.classList.toggle("side-nav-open", !open);
+        sideNav.classList.toggle("side-nav-close", open);
+        page.classList.toggle("page-open", !open);
+        page.classList.toggle("page-close", open);
+    };
+};
+
+// Start DynamicRequest Function 👇🏻
+const dynamicReqFunc = () => {
+    let activeEl = document.querySelector(".active");
+    let activeLink = activeEl.getAttribute("access-link");
+    let allCollapseBtn = document.querySelectorAll(".collapse-item");
+    dynamicAjaxFunc(activeLink);
+    for (let el of allCollapseBtn) {
+        el.onclick = (e) => {
+            let link = e.target.getAttribute("access-link");
+            dynamicAjaxFunc(link);
+        }
+    }
+}
+
+const dynamicAjaxFunc = (link) => {
+    let page = document.querySelector(".page");
+    let ajax = new XMLHttpRequest();
+    ajax.open("GET", link, true);
+    ajax.send();
+
+    // get Response
+    ajax.onload = () => {
+        let response = ajax.response;
+        page.innerHTML = response;
+        menuToggler();
+    }
+}
+
+
+                    <div class="col-md-4 bg-white shadow-sm p-4 rounded">
+                        <h5 class="mb-4">Create Category
+                            <i class="fa-solid fa-users-gear float-end text-primary"></i>
+                        </h5>
+                        <form>
+                            <!-- Input Field -->
+                            <div class="mb-3">
+                                <input type="text" placeholder="Enter Category" class="form-control">
+                            </div>
+                            <!-- Buttons -->
+                            <div class="space">
+                                <button type="button" class="btn btn-primary rounded">
+                                    <i class="fa fa-plus me-2"></i> Add Fields
+                                </button>
+                                <button type="submit" class="btn btn-danger rounded">Create</button>
+                            </div>
+                        </form>
+                    </div>

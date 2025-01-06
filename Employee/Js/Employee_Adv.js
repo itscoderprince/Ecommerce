@@ -7,11 +7,8 @@ let categoryData = [];
 let brandData = [];
 let productData = [];
 let dyLink = "";
-let thumb = "";
-let front = "";
-let back = "";
-let right = "";
-let left = "";
+let thumb = "", front = "", back = "", right = "", left = "";
+
 
 
 // Navigation toggle here
@@ -477,11 +474,13 @@ const createProductFunc = () => {
 
 const readProductFunc = (filterProductData) => {
     let productForm = document.querySelector('.product-form');
+    let submitUpdate = productForm.querySelectorAll('button');
     let allSelect = productForm.querySelectorAll('select');
     let descripition = productForm.querySelector('textarea');
     let allInputs = productForm.querySelectorAll('input');
-
     let ProductBrandList = document.querySelector('.Product_brand-list');
+    let option = allSelect[1].querySelector('option')
+
     ProductBrandList.innerHTML = "";
     filterProductData.forEach((product, index) => {
         ProductBrandList.innerHTML += `
@@ -528,23 +527,75 @@ const readProductFunc = (filterProductData) => {
     for (let btn of editBtns) {
         btn.onclick = function () {
             let parent = btn.parentElement.parentElement;
-            let id = parent.getAttribute('id')
+            let id = parent.getAttribute('id');
             let index = parent.getAttribute('index');
             let allTd = parent.querySelectorAll('td');
             let imgs = parent.querySelectorAll('img');
+
+            // Extract product details
             let category = allTd[1].innerHTML;
             let brand = allTd[2].innerHTML;
-            let descripition = allTd[4].innerHTML;
+            let title = allTd[3].innerHTML; // Fixed: Use correct variable for title
+            let description = allTd[4].innerHTML; // Fixed: Correctly assign description
             let price = allTd[5].innerHTML;
             let quantity = allTd[6].innerHTML;
+
+            // Assign image sources
             thumb = imgs[0].src;
             front = imgs[1].src;
             back = imgs[2].src;
             right = imgs[3].src;
             left = imgs[4].src;
+
+            // Populate form fields with the selected product details
             allSelect[0].value = category;
-            allSelect[1].value = brand;
-        }
+            allSelect[0].disabled = true;
+            allSelect[1].innerHTML = `<option value="${brand}">${brand}</option>`;
+            allSelect[1].disabled = true;
+
+            allInputs[0].value = title; // Set title correctly
+            descripition.value = description; // Set description correctly
+            allInputs[1].value = price;
+            allInputs[2].value = quantity;
+
+            submitUpdate[0].classList.add('d-none');
+            submitUpdate[1].classList.remove('d-none');
+
+            submitUpdate[1].onclick = function () {
+                productData[id] = {
+                    category: allSelect[0].value,
+                    brand: allSelect[1].value,
+                    title: allInputs[0].value,
+                    desc: descripition.value,
+                    price: allInputs[1].value,
+                    quantity: allInputs[2].value,
+                    thumb: thumb != "" ? thumb : "../../Common/Imgs/Avtr.com.png",
+                    front: front != "" ? front : "../../Common/Imgs/Avtr.com.png",
+                    back: back != "" ? back : "../../Common/Imgs/Avtr.com.png",
+                    right: right != "" ? right : "../../Common/Imgs/Avtr.com.png",
+                    left: left != "" ? left : "../../Common/Imgs/Avtr.com.png",
+                },
+                    filterProductData[index] = {
+                        category: allSelect[0].value,
+                        brand: allSelect[1].value,
+                        title: allInputs[0].value,
+                        desc: descripition.value,
+                        price: allInputs[1].value,
+                        quantity: allInputs[2].value,
+                        thumb: thumb != "" ? thumb : "../../Common/Imgs/Avtr.com.png",
+                        front: front != "" ? front : "../../Common/Imgs/Avtr.com.png",
+                        back: back != "" ? back : "../../Common/Imgs/Avtr.com.png",
+                        right: right != "" ? right : "../../Common/Imgs/Avtr.com.png",
+                        left: left != "" ? left : "../../Common/Imgs/Avtr.com.png",
+                    }
+                const isUpdated = editDelUpdFunc('productData', JSON.stringify(productData), dyLink, "Data Updated", filterProductData)
+                if (isUpdated) {
+                    submitUpdate[0].classList.remove('d-none');
+                    submitUpdate[1].classList.add('d-none');
+                    productForm.reset('');
+                }
+            }
+        };
     }
 
 }

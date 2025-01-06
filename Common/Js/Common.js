@@ -30,6 +30,7 @@ const editDelUpdFunc = (table_name, data, link, msg, filterData) => {
                 }
                 else if (link == 'Dynamic/Product_design.html') {
                     readProductFunc(filterData);
+                    return true;
                 }
                 swal("Poof! Your imaginary file has been " + msg + "!", {
                     icon: "success",

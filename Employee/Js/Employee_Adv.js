@@ -6,9 +6,9 @@ window.onload = () => {
 let categoryData = [];
 let brandData = [];
 let productData = [];
-let dyLink = "";
+let dyLink = ""
+let brandLogo = "";
 let thumb = "", front = "", back = "", right = "", left = "";
-
 
 
 // Navigation toggle here
@@ -75,6 +75,9 @@ const dynamicAjaxFunc = (link) => {
             }
             else if (dyLink == 'Dynamic/Product_design.html') {
                 createProductFunc();
+            }
+            else if (dyLink == 'Dynamic/Branding_design.html') {
+                createBrandingFunc();
             }
             else {
                 "Page Not Found...."
@@ -600,3 +603,112 @@ const readProductFunc = (filterProductData) => {
 
 }
 
+// <----------------------------------------------------------------------->
+
+// Create Branding Function
+const createBrandingFunc = () => {
+    let brandingForm = document.querySelector('.branding-form');
+    let allInputs = brandingForm.querySelectorAll('input');
+    let textarea = brandingForm.querySelectorAll('textarea');
+    let largeTextarea = brandingForm.querySelectorAll('.textarea');
+    let allBtn = brandingForm.querySelectorAll('button');
+    let EditBrandingBtn = document.querySelector('.edit-branding-btn');
+
+    // Update character count for large text areas
+    for (let textarea of largeTextarea) {
+        textarea.oninput = () => {
+            let parent = textarea.parentElement;
+            let span = parent.querySelector('span')
+            let length = textarea.value.length;
+            span.innerHTML = length;
+        }
+    }
+
+    // Handle file upload
+    allInputs[1].onchange = () => {
+        let fReader = new FileReader();
+        fReader.onload = (e) => brand_logo = e.target.result;
+        fReader.readAsDataURL(allInputs[1].files[0]);
+    }
+
+    // Collect branding details and Store
+    brandingForm.onsubmit = (e) => {
+        e.preventDefault();
+        insertBranadingFunc();
+        readBrandingFunc();
+    }
+
+    // Collect branding details for Reading
+    const readBrandingFunc = () => {
+        let branding = getAllData('allBrandingData');
+        console.log(branding);
+
+
+        if (branding.length > 0) {
+            EditBrandingBtn.classList.remove('d-none')
+            allInputs[0].value = branding[0].brand_name;
+            brandLogo.value = branding[0].brand_logo;
+            allInputs[2].value = branding[0].brand_domain;
+            allInputs[3].value = branding[0].brand_email;
+            allInputs[4].value = branding[0].brand_facebook;
+            allInputs[5].value = branding[0].brand_twitter;
+            allInputs[6].value = branding[0].brand_watsapp;
+            allInputs[7].value = branding[0].brand_instragram;
+            allInputs[8].value = branding[0].brand_mobile;
+            textarea[0].value = branding[0].brand_address;
+            textarea[1].value = branding[0].brand_about;
+            textarea[2].value = branding[0].brand_privacy;
+            textarea[3].value = branding[0].brand_cookie;
+            textarea[4].value = branding[0].brand_terms;
+
+            for (let input of allInputs) {
+                input.disabled = true;
+            }
+            for (let texta of textarea) {
+                texta.disabled = true;
+            }
+            allBtn[0].classList.add('d-none');
+            allBtn[1].classList.remove('d-none');
+
+            EditBrandingBtn.onclick = () => {
+                for (let input of allInputs) {
+                    input.disabled = false;
+                }
+                for (let texta of textarea) {
+                    texta.disabled = false;
+                }
+
+                allBtn[1].disabled = false;
+            }
+            allBtn[1].disabled = true;
+        }
+        else {
+            // swal("Empty Brand!", "Please Register Brand First!", "warning");
+        }
+    }
+    readBrandingFunc();
+
+    const insertBranadingFunc = () => {
+        let allBrandingData = [];
+        allBrandingData.push({
+            brand_name: allInputs[0].value,
+            brand_logo: brandLogo,
+            brand_domain: allInputs[2].value,
+            brand_email: allInputs[3].value,
+            brand_facebook: allInputs[4].value,
+            brand_twitter: allInputs[5].value,
+            brand_watsapp: allInputs[6].value,
+            brand_instragram: allInputs[7].value,
+            brand_mobile: allInputs[8].value,
+            brand_address: textarea[0].value,
+            brand_about: textarea[1].value,
+            brand_privacy: textarea[2].value,
+            brand_cookie: textarea[3].value,
+            brand_terms: textarea[4].value,
+        });
+
+        // Push details to the array and save
+        insertData('allBrandingData', JSON.stringify(allBrandingData))
+        insertMsg();
+    }
+}

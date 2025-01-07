@@ -1,0 +1,117 @@
+<nav class="navbar bg-white page-nav ">
+    <button class="btn " id="menu-toggler">
+        <i class="fa-solid fa-align-left"></i>
+    </button>
+</nav>
+
+<div class="row py-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 bg-white shadow-sm rounded p-4">
+        <div class="mb-3 d-flex justify-content-between align-items-center w-100">
+            <h3 ><i class="fa fa-info-circle me-3"></i>Branding Details</h3>
+            <button class="btn btn-primary edit-branding-btn d-none btn-sm"><i class="fa fa-edit"></i> Edit</button>
+        </div>
+        <form class="branding-form row g-3">
+            <!-- Brand Name -->
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                    <input type="text" class="form-control" placeholder="Brand Name">
+                </div>
+            </div>
+            <!-- File Upload -->
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-file-upload"></i></span>
+                    <input type="file" class="form-control">
+                </div>
+            </div>
+            <!-- Brand Domain -->
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                    <input type="url" class="form-control" placeholder="Brand Domain">
+                </div>
+            </div>
+            <!-- Brand Email -->
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <input type="email" class="form-control" placeholder="Brand Email">
+                </div>
+            </div>
+            <!-- Social Media Links -->
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fab fa-facebook"></i></span>
+                    <input type="url" class="form-control" placeholder="Facebook URL">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                    <input type="url" class="form-control" placeholder="Twitter URL">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                    <input type="url" class="form-control" placeholder="WhatsApp URL">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                    <input type="url" class="form-control" placeholder="Instagram URL">
+                </div>
+            </div>
+            <!-- Contact Info -->
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    <input type="tel" class="form-control" placeholder="Mobile Number">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <textarea class="form-control" rows="2" placeholder="Brand Address"></textarea>
+                </div>
+            </div>
+
+            <!-- Large Text Areas -->
+            <div class="col-md-12">
+                <label for="brand-about" class="form-label">
+                    <i class="fa fa-info-circle me-2"></i>Brand About <span>0</span> / <span>5000</span>
+                </label> <textarea rows="4" maxlength="5000" class="form-control textarea" id="brand-about"
+                    placeholder="Write about the brand..."></textarea>
+            </div>
+            <div class="col-md-12">
+                <label for="brand-Privacy" class="form-label">
+                    <i class="fa fa-lock me-2"></i>Privacy Policy <span>0</span> / <span>5000</span>
+                </label> <textarea rows="4" maxlength="5000" class="form-control textarea" id="brand-privacy"
+                    placeholder="Write the privacy policy..."></textarea>
+            </div>
+            <div class="col-md-12">
+                <label for="brand-cookie" class="form-label">
+                    <i class="fa fa-cookie me-2"></i>Cookie Policy <span>0</span> / <span>5000</span>
+                </label> <textarea rows="4" maxlength="5000" class="form-control textarea" id="brand-cookie"
+                    placeholder="Write the cookie policy..."></textarea>
+            </div>
+            <div class="col-md-12">
+                <label for="brand-terms" class="form-label">
+                    <i class="fa fa-file-alt me-2"></i>Terms & Conditions <span>0</span> / <span>5000</span>
+                </label>
+                <textarea rows="4" maxlength="5000" class="form-control textarea" id="brand-terms"
+                    placeholder="Write the terms and conditions..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="col-md-12 text-end">
+                <button class="btn btn-primary me-2">Submit</button>
+                <button class="btn btn-danger d-none" disabled>Save & Changes</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>

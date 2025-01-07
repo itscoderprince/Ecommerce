@@ -32,8 +32,7 @@ const editDelUpdFunc = (table_name, data, link, msg, filterData) => {
                     readProductFunc(filterData);
                     return true;
                 }
-                swal("Poof! Your imaginary file has been " + msg + "!", {
-                    icon: "success",
+                swal("Poof! Your imaginary file has been " + msg + "!", {icon: "success",
                 });
             } else {
                 swal("Your imaginary file is safe!");

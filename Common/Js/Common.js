@@ -12,30 +12,33 @@ const getAllData = (table_name) => {
 }
 
 const editDelUpdFunc = (table_name, data, link, msg, filterData) => {
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    })
-        .then((willDelete) => {
-            if (willDelete) {
-                insertData(table_name, data);
-                if (link == 'Dynamic/Category.html') {
-                    readCategoryData();
+    return new Promise((resolve, reject) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    insertData(table_name, data);
+                    if (link == 'Dynamic/Category.html') {
+                        readCategoryData();
+                    }
+                    else if (link == 'Dynamic/Brand_design.html') {
+                        readBrandFunc(filterData);
+                    }
+                    else if (link == 'Dynamic/Product_design.html') {
+                        readProductFunc(filterData);
+                        resolve(true);
+                    }
+                    swal("Poof! Your imaginary file has been " + msg + "!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
                 }
-                else if (link == 'Dynamic/Brand_design.html') {
-                    readBrandFunc(filterData);
-                }
-                else if (link == 'Dynamic/Product_design.html') {
-                    readProductFunc(filterData);
-                    return true;
-                }
-                swal("Poof! Your imaginary file has been " + msg + "!", {icon: "success",
-                });
-            } else {
-                swal("Your imaginary file is safe!");
-            }
-        });
+            });
+    });
 }

@@ -189,7 +189,7 @@ const readCategoryData = () => {
             let parent = btn.parentElement.parentElement;
             let index = parent.getAttribute('index');
             categoryData.splice(index, 1);
-            editDelUpdFunc('categoryData', JSON.stringify(categoryData), dyLink, ' Deleted')
+            editDelUpdFunc('categoryData', JSON.stringify(categoryData), dyLink, ' Deleted');
         }
     }
 }
@@ -245,7 +245,7 @@ const createBrandFunc = () => {
             brandForm.reset('');
         }
         else {
-            swal("Warning!", "Field are Empty !", "warning");
+            swal("Warning!", "Choose Category is Empty !", "warning");
         }
     }
 
@@ -538,8 +538,8 @@ const readProductFunc = (filterProductData) => {
             // Extract product details
             let category = allTd[1].innerHTML;
             let brand = allTd[2].innerHTML;
-            let title = allTd[3].innerHTML; // Fixed: Use correct variable for title
-            let description = allTd[4].innerHTML; // Fixed: Correctly assign description
+            let title = allTd[3].innerHTML;
+            let description = allTd[4].innerHTML;
             let price = allTd[5].innerHTML;
             let quantity = allTd[6].innerHTML;
 
@@ -556,15 +556,15 @@ const readProductFunc = (filterProductData) => {
             allSelect[1].innerHTML = `<option value="${brand}">${brand}</option>`;
             allSelect[1].disabled = true;
 
-            allInputs[0].value = title; // Set title correctly
-            descripition.value = description; // Set description correctly
+            allInputs[0].value = title;
+            descripition.value = description;
             allInputs[1].value = price;
             allInputs[2].value = quantity;
 
             submitUpdate[0].classList.add('d-none');
             submitUpdate[1].classList.remove('d-none');
 
-            submitUpdate[1].onclick = function () {
+            submitUpdate[1].onclick = async function () {
                 productData[id] = {
                     category: allSelect[0].value,
                     brand: allSelect[1].value,
@@ -591,7 +591,7 @@ const readProductFunc = (filterProductData) => {
                         right: right != "" ? right : "../../Common/Imgs/Avtr.com.png",
                         left: left != "" ? left : "../../Common/Imgs/Avtr.com.png",
                     }
-                const isUpdated = editDelUpdFunc('productData', JSON.stringify(productData), dyLink, "Data Updated", filterProductData)
+                const isUpdated = await editDelUpdFunc('productData', JSON.stringify(productData), dyLink, "Data Updated", filterProductData)
                 if (isUpdated) {
                     submitUpdate[0].classList.remove('d-none');
                     submitUpdate[1].classList.add('d-none');
@@ -600,7 +600,6 @@ const readProductFunc = (filterProductData) => {
             }
         };
     }
-
 }
 
 // <----------------------------------------------------------------------->
@@ -627,7 +626,7 @@ const createBrandingFunc = () => {
     // Handle file upload
     allInputs[1].onchange = () => {
         let fReader = new FileReader();
-        fReader.onload = (e) => brand_logo = e.target.result;
+        fReader.onload = (e) => brandLogo = e.target.result;
         fReader.readAsDataURL(allInputs[1].files[0]);
     }
 
@@ -641,9 +640,6 @@ const createBrandingFunc = () => {
     // Collect branding details for Reading
     const readBrandingFunc = () => {
         let branding = getAllData('allBrandingData');
-        console.log(branding);
-
-
         if (branding.length > 0) {
             EditBrandingBtn.classList.remove('d-none')
             allInputs[0].value = branding[0].brand_name;
@@ -681,9 +677,6 @@ const createBrandingFunc = () => {
                 allBtn[1].disabled = false;
             }
             allBtn[1].disabled = true;
-        }
-        else {
-            // swal("Empty Brand!", "Please Register Brand First!", "warning");
         }
     }
     readBrandingFunc();

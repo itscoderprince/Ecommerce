@@ -63,7 +63,6 @@ const dynamicAjaxFunc = (link) => {
             }
         }, 300);
     }
-
 }
 
 // Create Category Function

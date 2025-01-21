@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/Common/Js/bootstrap.bundle.min.js"></script>
+    <script defer src="/Common/Js/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/Common/Css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/Css/index.css">
+    <title>Ecommerce</title>
+</head>
+
+<body>
+    <div class="navbar-box">
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="container bg-white shadow-sm rounded" style="margin-top: 65px;">
+        <h2 class="text-center">Welcome to TechNova</h2>
+        <p class="text-muted text-center">Your one-stop solution for all your tech needs!</p>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer-box">
+
+    </div>
+
+    <script src="/Common/Js/Common.js"></script>
+    <script src="./Js/index.js"></script>
+    <script src="./Js/dynamic.js"></script>
+
+    <script>
+        const navbarBox = document.querySelector('.navbar-box');
+        const footerBox = document.querySelector('.footer-box');
+
+        // Usage
+        dynamicRequest(navbarBox, 'Pages/Nav.html');
+        dynamicRequest(footerBox, 'Pages/Footer.html');
+
+    </script>
+</body>
+
+</html>

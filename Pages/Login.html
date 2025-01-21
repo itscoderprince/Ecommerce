@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="../Common/Js/bootstrap.bundle.min.js"></script>
+    <script defer src="../Common/Js/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/Common/Css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="/Css/index.css"> -->
+    <title>Ecommerce</title>
+</head>
+<body>
+    <div class="navbar-box">
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="container bg-white p-2 shadow-lg rounded mb-3" style="margin-top: 70px;">
+        <h3 class="text-center fw-bold bg-info p-1">Welcome to LogIn Form</h3>
+        <hr>
+        <div class="row mb-3 p-2 rounded">
+            <!-- Left Side Column for the Login Form -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center bg-light">
+                <form class="Login-form w-100">   
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">
+                            Email
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-4">
+                        <label for="password" class="form-label">
+                            Password
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        </div>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-sign-in-alt"></i> Log In
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side Column -->
+            <div class="col-md-6 d-flex flex-column align-items-center justify-content-center bg-white p-3">
+                <h2 class="mb-3 text-secondary text-center">Welcome Back!</h2>
+                <p class="mb-4 text-muted text-center">
+                    Don't have an account yet? Sign up to get started and enjoy our services.
+                    We're excited to have you on board!
+                </p>
+                <a href="http://127.0.0.1:5501/Pages/Signup.html" class="btn btn-success">
+                    <i class="fa fa-user-plus"></i> Sign Up
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-box">
+
+    </div>
+
+    <script src="../Common/Js/Common.js"></script>
+    <script src="../Js/dynamic.js"></script>
+
+    <script>
+        const navbarBox = document.querySelector('.navbar-box');
+        const footerBox = document.querySelector('.footer-box');
+
+        // Usage
+        dynamicRequest(navbarBox, 'Nav.html');
+        dynamicRequest(footerBox, 'Footer.html');
+    </script>
+</body>
+
+</html>

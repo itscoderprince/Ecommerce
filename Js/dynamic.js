@@ -4,6 +4,7 @@ setTimeout(() => {
 }, 400)
 
 const brandingData = getAllData('allBrandingData');
+const SregistrationData = getAllData('registrationData');
 
 // Define the dynamicNavabrFunc function
 const dynamicNavabrFunc = () => {
@@ -17,8 +18,8 @@ const dynamicNavabrFunc = () => {
                 </li>`;
     }
 
-    dynamiclinkBox.innerHTML +=
-        ` <div class="btn-group">
+    dynamiclinkBox.innerHTML += ` 
+            <div class="btn-group">
                 <button class="btn">
                     <i class="fa fa-shopping-cart"></i>
                 </button>
@@ -29,20 +30,59 @@ const dynamicNavabrFunc = () => {
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="fa fa-user"></i>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="http://127.0.0.1:5501/Pages/Signup.html" class="dropdown-item"> <i class="fa fa-user"></i> SignUp</a>
-                        </li>
-                        <li>
-                            <a href="http://127.0.0.1:5501/Pages/Login.html" class="dropdown-item">
-                                <i class="fa fa-sign-out"></i>
-                                LogIn</a>
-                        </li>
+                    <ul class="dropdown-menu" id="user-menu">
+                    
                     </ul>
                 </div>
-            </div>`;
+            </div>
+            `;
+
+    let userMenu = dynamiclinkBox.querySelector('#user-menu');
+    if (localStorage.getItem('__au__') != null) {
+        let user = localStorage.getItem('__au__');
+
+        let currentUser = SregistrationData.find((data) => data.email === user);
+        userMenu.innerHTML +=
+            `<li>
+                <a href="http://127.0.0.1:5501/Pages/Signup.html" class="dropdown-item d-flex align-items-center">
+                    <i class="fa fa-user me-2"></i> ${currentUser.fullname}
+                </a>
+            </li>
+            <li>
+                <a href="#" class="dropdown-item logout-btn d-flex align-items-center">
+                    <i class="fa fa-sign-out me-2"></i> LogOut
+                </a>
+            </li>
+            `;
+
+            let logoutBtn = userMenu.querySelector('.logout-btn');
+            logoutBtn.onclick = (e) => {
+                e.preventDefault();
+                setTimeout(() => {
+                    localStorage.removeItem('__au__');
+                    window.location = '../index.html';
+                }, 400);
+            };
+
+    } else {
+        userMenu.innerHTML +=
+            `<li>
+            <a href="http://127.0.0.1:5501/Pages/Signup.html" class="dropdown-item d-flex align-items-center">
+                <i class="fa fa-user me-2"></i> SignUp
+            </a>
+        </li>
+        <li>
+                <a href="http://127.0.0.1:5501/Pages/Login.html" class="dropdown-item d-flex align-items-center">
+                    <i class="fa fa-sign-out me-2"></i> LogIn
+                </a>
+        </li>
+            `;
+    }
+
+
 };
 
+//Footer Code Here:-
 const createFooterFunc = () => {
     let footerLinkBox = document.querySelector('.footer-link-box');
     let socialMediaBox = document.querySelector('#socicalmedia-box');
@@ -55,7 +95,7 @@ const createFooterFunc = () => {
         footerLinkBox.innerHTML +=
             `<li>
                 <a href="#" class="nav-link text-primary">${category.category}</a>
-            </li>`;
+            </li> `;
     }
 
     // Social Media

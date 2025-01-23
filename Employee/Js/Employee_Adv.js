@@ -25,7 +25,7 @@ const menuTogglerFunc = () => {
     }
 }
 
-// Start DynamicRequest Function 👇🏻
+// Active Links Code
 const dynamicReqFunc = () => {
     let activeEl = document.querySelector(".active");
     let activeLink = activeEl.getAttribute("access-link");
@@ -44,6 +44,7 @@ const dynamicReqFunc = () => {
     }
 }
 
+// Start DynamicRequest Function 👇🏻
 const dynamicAjaxFunc = (link) => {
     dyLink = link;
     let page = document.querySelector(".page");
@@ -78,6 +79,9 @@ const dynamicAjaxFunc = (link) => {
             }
             else if (dyLink == 'Dynamic/Branding_design.html') {
                 createBrandingFunc();
+            }
+            else if (dyLink == 'Dynamic/Categoryshowcase.html') {
+                createHeaderShowCaseFunc();
             }
             else {
                 "Page Not Found...."
@@ -345,7 +349,6 @@ const readBrandFunc = (filterData) => {
 
 
 // <------ Product Page Function's ------->
-
 const createProductFunc = () => {
     categoryData = getAllData('categoryData');
     brandData = getAllData('brandData');
@@ -474,7 +477,6 @@ const createProductFunc = () => {
 }
 
 // Show Product in Table or Ui
-
 const readProductFunc = (filterProductData) => {
     let productForm = document.querySelector('.product-form');
     let submitUpdate = productForm.querySelectorAll('button');
@@ -705,3 +707,145 @@ const createBrandingFunc = () => {
         insertMsg();
     }
 }
+
+// <----------------------------------------------------->
+
+const createHeaderShowCaseFunc = () => {
+    let showCaseForm = document.querySelector('#ShowCase-form');
+    let allInputs = showCaseForm.querySelectorAll('input');
+    let textareaEl = showCaseForm.querySelector('textarea');
+    let maxLength = showCaseForm.querySelectorAll('.max-lenght');
+    let showCasePreview = document.querySelector('#ShowCase-preview')
+    let titleBox = showCasePreview.querySelector('.title-box');
+    let titleBtnBox = showCasePreview.querySelector('.title-btnBox');
+    let textColor = showCasePreview.querySelector('.text-color');
+    let textSize = showCasePreview.querySelector('.text-size');
+    let btnText = showCasePreview.querySelector('.btn-text');
+    let btnUrl = showCasePreview.querySelector('.btn-url');
+    let btnSize = showCasePreview.querySelector('.btn-size');
+    let btnBgColor = showCasePreview.querySelector('.btnBg-color');
+    let btnTextColor = showCasePreview.querySelector('.btnText-color');
+    let addBtn = showCasePreview.querySelector('.add-btn');
+    let targetEl = showCasePreview.querySelectorAll('.target');
+    let allAlignments = showCasePreview.querySelectorAll('.alignment');
+    console.log(allAlignments);
+
+
+
+    // Updating Title with Input Fields Code 
+    allInputs[1].oninput = () => {
+        maxLength[0].innerHTML = "&nbsp" + allInputs[1].value.length;
+        targetEl[0].innerHTML = allInputs[1].value;
+    }
+
+    // Updating Subtitle with textarea Fields Code 
+    textareaEl.oninput = () => {
+        maxLength[1].innerHTML = "&nbsp" + textareaEl.value.length;
+        targetEl[1].innerHTML = textareaEl.value;
+    }
+
+    // Selecting title and subtitle for color and size change
+    for (let target of targetEl) {
+        target.onclick = (e) => {
+            e.stopPropagation();
+
+            for (let el of targetEl) {
+                el.style.border = 'inherit';
+            }
+            target.style.border = '2px solid grey';
+
+            // Color Change here
+            textColor.oninput = () => {
+                target.style.color = textColor.value;
+            };
+
+            // Text Size Change Here
+            textSize.oninput = () => {
+                target.style.fontSize = textSize.value + "%";
+            };
+        };
+    }
+
+    document.addEventListener("click", () => {
+        for (let el of targetEl) {
+            el.style.border = 'inherit';
+        }
+    });
+
+    // Add Btn function
+    addBtn.onclick = () => {
+        let titleBtns = titleBtnBox.querySelectorAll('button');
+
+        if (titleBtns.length < 2) {
+            if (btnText.value != '') {
+                let button = document.createElement('button');
+                button.classList = 'btn mx-3';
+                button.style.background = btnBgColor.value;
+
+                let a = document.createElement('a');
+                a.innerHTML = btnText.value;
+                a.style.color = btnTextColor.value;
+                a.style.fontSize = btnSize.value;
+                a.style.textDecoration = 'none';
+                a.href = btnUrl.value;
+
+                button.append(a);
+                titleBtnBox.append(button);
+            }
+            else {
+                swal("Plese Enter text first ⚠!");
+            }
+        }
+        else {
+            swal("Only two buttons Allowed ⚠!");
+        }
+    }
+
+    // Upload & Read img function:
+    allInputs[0].onchange = () => {
+        let fReader = new FileReader();
+        fReader.readAsDataURL(allInputs[0].files[0]);
+        let file = allInputs[0].files[0];
+        if (file.size < 200000) {
+            fReader.onload = (e) => {
+                let imgUrl = e.target.result;
+                let image = new Image();
+                image.src = imgUrl;
+                image.onload = () => {
+                    let imgHeight = image.height;
+                    let imgWidth = image.width;
+                    if (imgWidth == 1920 && imgHeight == 680) {
+
+                        image.style.width = '100%';
+                        image.style.position = 'absolute';
+                        image.style.top = '0';
+                        image.style.left = '0';
+                        showCasePreview.append(image);
+
+                    }
+                    else {
+                        swal("Plese Upload image 1920*680 Size ⚠!");
+                    }
+                }
+            }
+        }
+        else {
+            swal("Plese Upload image under 200kb ⚠!");
+        }
+    }
+
+    // Align the Text Buttons
+    for (let el of allAlignments) {
+        el.onclick = function () {
+            let alignPosition = this.getAttribute('align-position');
+            let alignValue = this.getAttribute('align-value');
+
+            if (alignPosition == 'h') {
+                showCasePreview.style.justifyContent = alignValue;
+            }
+            else if (alignPosition == 'v') {
+                showCasePreview.style.alignItems = alignValue;
+            }
+        };
+    }
+} 

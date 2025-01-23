@@ -1,0 +1,122 @@
+<nav class="navbar bg-white page-nav ">
+    <button class="btn" id="menu-toggler">
+        <i class="fa-solid fa-align-left"></i>
+    </button>
+</nav>
+
+<div class="row p-3">
+    <h3 class="fw-bold p-0 mb-3">Header Showcase</h3>
+    <div id="ShowCase-preview" class="col-md-12 d-flex bg-white shadow-sm p-3 position-relative" style="height: 480px;">
+        
+        <!-- Title Box -->
+        <div class="title-box mb-2 position-absolute z-1">
+            <h1 class="fw-bold target" style="cursor: pointer;">Title</h1>
+            <h4 class="target" style="cursor: pointer;">Subtitle</h4>
+            <div class="mt-3 title-btnBox">
+                
+            </div>
+        </div>
+
+        <!-- Formatting Box -->
+        <div class="z-1 formatting-box position-absolute bg-dark text-white p-2 w-100 bottom-0 start-0" >
+            <div class="row align-items-center">
+
+                <!-- Color and Size Section -->
+                <div class="col-md-3 mb-2 mb-md-0">
+                    <div class="btn-group w-100">
+                        <button class="btn btn-light">Color</button>
+                        <button class="btn btn-light">
+                            <input type="color" class="form-control form-control-color text-color"
+                                title="Choose your color">
+                        </button>
+                        <button class="btn btn-light">Size</button>
+                        <button class="btn btn-light">
+                            <input type="range" max="500" min="100" class="form-range text-size" title="Adjust size">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Text and URL Section -->
+                <div class="col-md-4 mb-md-0">
+                    <div class="btn-group w-100">
+                        <button class="btn btn-light">Text</button>
+                        <button class="btn btn-light">
+                            <input type="text" class="form-control btn-text" placeholder="Enter text">
+                        </button>
+                        <button class="btn btn-light">Url</button>
+                        <button class="btn btn-light">
+                            <input type="url" class="btn-url form-control" placeholder="Enter URL">
+                        </button>
+                        <button class="btn btn-light">Size</button>
+                        <button class="btn btn-light">
+                            <select class="form-select btn-size">
+                                <option value="16px">Small</option>
+                                <option value="20px">Medium</option>
+                                <option value="24px">Large</option>
+                            </select>
+                        </button>
+                    </div>
+                </div>
+                <!-- Background and Add Section -->
+                <div class="col-md-3 mb-2 mb-md-0">
+                    <div class="btn-group w-100">
+                        <button class="btn btn-light">Bg</button>
+                        <button class="btn btn-light">
+                            <input type="color" class="form-control form-control-color btnBg-color"
+                                title="Choose background color">
+                        </button>
+                        <button class="btn btn-light">Color</button>
+                        <button class="btn btn-light">
+                            <input type="color" class="form-control form-control-color btnText-color"
+                                title="Choose text color">
+                        </button>
+                        <button class="btn btn-primary add-btn">Add</button>
+                    </div>
+                </div>
+                <!-- Alignment Section -->
+                <div class="col-md-2 text-center">
+                    <div class="dropdown">
+                        <button data-bs-toggle="dropdown" class="btn btn-light dropdown-toggle w-100">
+                            Alignment
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><span class="dropdown-item alignment" align-position="h" align-value="flex-start">Left</span></li>
+                            <li><span class="dropdown-item alignment" align-position="h" align-value="flex-end">Right</span></li>
+                            <li><span class="dropdown-item alignment" align-position="h" align-value="center">Center</span></li>
+                            <li><span class="dropdown-item alignment" align-position="v" align-value="flex-start">Top</span></li>
+                            <li><span class="dropdown-item alignment" align-position="v" align-value="center">V-Center</span></li>
+                            <li><span class="dropdown-item alignment" align-position="v" align-value="flex-end">Bottom</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="bg-light shadow-sm rounded mt-3 p-2" id="ShowCase-form">
+        <div class="row p-1">
+            <!-- Left Column -->
+            <div class="col-md-6 mb-3">
+                <div class="input-group mb-4">
+                    <span class="input-group-text bg-primary text-white">Title Image (1920*680)</span>
+                    <input type="file" class="form-control" title="Choose an image">
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text bg-primary text-white">Title <span class="max-lenght">&nbsp; 0</span>/40</span>
+                    <input type="text" class="form-control" placeholder="Enter title" required maxlength="40">
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6 mb-3">
+                <div class="input-group mb-4">
+                    <span class="input-group-text bg-primary text-white">Subtitle <span class="max-lenght">&nbsp; 0</span>/100</span>
+                    <textarea class="form-control" placeholder="Subtitle.." maxlength="100"></textarea>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary px-4">Add Showcase</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -212,3 +212,9 @@ label {
     margin-bottom: 0.5rem;
     font-size: 0.85rem;
 }
+/* <--------------------------> */
+.target{
+    max-width: fit-content;
+    padding: 0.2rem;
+    margin: 5px 0;
+}

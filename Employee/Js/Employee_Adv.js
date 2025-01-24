@@ -83,6 +83,9 @@ const dynamicAjaxFunc = (link) => {
             else if (dyLink == 'Dynamic/Categoryshowcase.html') {
                 createHeaderShowCaseFunc();
             }
+            else if (dyLink == 'Dynamic/headerShowcase.html') {
+                createShowCaseCategoryFunc();
+            }
             else {
                 "Page Not Found...."
             }
@@ -711,10 +714,13 @@ const createBrandingFunc = () => {
 // <----------------------------------------------------->
 
 const createHeaderShowCaseFunc = () => {
+    let allHeaderShowCase = [];
+    allHeaderShowCase = getAllData('allHeaderShowCase');
     let showCaseForm = document.querySelector('#ShowCase-form');
     let allInputs = showCaseForm.querySelectorAll('input');
     let textareaEl = showCaseForm.querySelector('textarea');
     let maxLength = showCaseForm.querySelectorAll('.max-lenght');
+    let addShowcaseBtn = showCaseForm.querySelector('#addShowcase-Btn');
     let showCasePreview = document.querySelector('#ShowCase-preview')
     let titleBox = showCasePreview.querySelector('.title-box');
     let titleBtnBox = showCasePreview.querySelector('.title-btnBox');
@@ -728,9 +734,6 @@ const createHeaderShowCaseFunc = () => {
     let addBtn = showCasePreview.querySelector('.add-btn');
     let targetEl = showCasePreview.querySelectorAll('.target');
     let allAlignments = showCasePreview.querySelectorAll('.alignment');
-    console.log(allAlignments);
-
-
 
     // Updating Title with Input Fields Code 
     allInputs[1].oninput = () => {
@@ -848,4 +851,108 @@ const createHeaderShowCaseFunc = () => {
             }
         };
     }
-} 
+
+    // Add Showcase in the local storage
+    addShowcaseBtn.onclick = (e) => {
+        e.preventDefault();
+
+        if (allHeaderShowCase.length < 3) {
+            allHeaderShowCase.push({
+                slider: showCasePreview.innerHTML,
+            });
+            insertData('allHeaderShowCase', JSON.stringify(allHeaderShowCase));
+            insertMsg();
+        }
+        else {
+            swal("Only three sliders are allowed ⚠!");
+        }
+    };
+
+}
+
+// Create ShowCase Category Function
+
+const createShowCaseCategoryFunc = () => {
+    let url = '';
+    let allshowCaseData = [];
+    allshowCaseData = getAllData('allshowCaseData');
+    let ShowCaseCategory = document.querySelector('.Showcase-category');
+    let uploadBtn = ShowCaseCategory.querySelectorAll('.upload-btn');
+    let allImgTag = ShowCaseCategory.querySelectorAll('img');
+
+
+    for (let upload of uploadBtn) {
+
+        upload.onchange = () => {
+            let parent = upload.parentElement.parentElement.parentElement;
+            let imgTag = parent.querySelector('img');
+            let setBtn = parent.querySelector('.set-btn');
+            let urlInput = parent.querySelectorAll('input')[1];
+            let DemoImg_width = imgTag.naturalWidth;
+            let DemoImg_height = imgTag.naturalHeight;
+
+            // Read image URL
+            let fReader = new FileReader();
+            fReader.onload = (e) => {
+                url = e.target.result;
+                let image = new Image();
+                image.src = url;
+
+                image.onload = () => {
+                    let imgWidth = image.width;
+                    let imgHeight = image.height;
+                    if (imgWidth == DemoImg_width && imgHeight == DemoImg_height) {
+
+                        imgTag.src = url;
+
+                        // Loop through all set buttons and assign the click handler
+                        setBtn.onclick = () => {
+                            let imgDir = setBtn.getAttribute('img-dir');
+
+                            if (urlInput.value != '') {
+                                let direction = allshowCaseData.find((data) => data.direction == imgDir);
+
+                                if (direction == undefined) {
+                                    allshowCaseData.push({
+                                        image: url,
+                                        direction: imgDir,
+                                        lable: urlInput.value.trim()
+                                    });
+                                    insertData('allshowCaseData', JSON.stringify(allshowCaseData));
+                                    insertMsg();
+                                }
+                                else {
+                                    let indexNo = allshowCaseData.findIndex((data) => data.direction == imgDir);
+                                    allshowCaseData[indexNo] = {
+                                        image: url,
+                                        direction: imgDir,
+                                        lable: urlInput.value.trim()
+                                    }
+                                    insertData('allshowCaseData', JSON.stringify(allshowCaseData));
+                                    swal("Image Data Updated ✅!");
+                                }
+                                setBtn.parentElement.classList.add('d-none');
+                            }
+                            else {
+                                swal("Please Enter Url First ⚠!");
+                            }
+                        };
+                    }
+                    else {
+                        swal(`Please Upload ${DemoImg_width}*${DemoImg_height} Image Size ⚠!`);
+                    }
+                };
+            };
+            fReader.readAsDataURL(upload.files[0]);
+        };
+    }
+
+    // Control upload element
+    for (let img of allImgTag) {
+        img.ondblclick = () => {
+            let parent = img.parentElement;
+            let setBtn = parent.querySelector('.set-btn');
+            setBtn.parentElement.classList.toggle('d-none');
+        }
+    }
+}
